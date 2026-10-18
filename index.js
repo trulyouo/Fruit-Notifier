@@ -18,7 +18,6 @@ client.on('ready', () => {
 
 client.on('messageCreate', async (message) => {
   if (message.channel.id !== WATCH_CHANNEL_ID) return;
-  if (message.author.bot) return;
 
   if (message.content.includes(TRIGGER_TEXT)) {
     const messageLink = `https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}`;
