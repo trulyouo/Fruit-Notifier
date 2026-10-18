@@ -19,9 +19,6 @@ client.on('ready', () => {
 client.on('messageCreate', async (message) => {
   if (message.channel.id !== WATCH_CHANNEL_ID) return;
 
-  console.log('MSG:', message.content);
-  console.log('EMBEDS:', JSON.stringify(message.embeds));
-
   const contentMatch = message.content?.includes(TRIGGER_TEXT);
   const embedMatch = message.embeds?.some(embed =>
     embed.title?.includes(TRIGGER_TEXT) ||
