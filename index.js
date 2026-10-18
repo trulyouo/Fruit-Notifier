@@ -22,7 +22,6 @@ client.on('messageCreate', async (message) => {
 
   if (message.content.includes(TRIGGER_TEXT)) {
     const messageLink = `https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}`;
-    
     const alertChannel = await client.channels.fetch(ALERT_CHANNEL_ID);
     if (alertChannel) {
       await alertChannel.send(`@everyone - DIVINE HIT!\n${messageLink}`);
