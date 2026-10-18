@@ -10,7 +10,7 @@ const client = new Client({
 
 const WATCH_CHANNEL_ID = '1535308968661094490';
 const ALERT_CHANNEL_ID = '1561259494799839252';
-const TRIGGER_TEXT = ':apple: [Legendary] Divine';
+const TRIGGER_TEXT = '🍎 [Legendary] Divine';
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
