@@ -15,7 +15,6 @@ const TRIGGERS = [
   { text: '🍎 [Mythical] Galaxy', alertChannel: '1561911747831398440', message: '@everyone - GALAXY HIT!' },
   { text: '🍎 [Mythical] Empyrean', alertChannel: '1561911833760366674', message: '@everyone - EMPYREAN HIT!' },
   { text: '🍎 [Mythical] Ember', alertChannel: '1561911763102994512', message: '@everyone - EMBER HIT!' },
-  { text: '☁️ [Mythical] Hellfire (Gas)', alertChannel: '1566221538510897222', message: '@everyone - HELLFIRE HIT!' },
 ];
 
 client.on('ready', () => {
