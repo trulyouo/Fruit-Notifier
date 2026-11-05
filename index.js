@@ -24,6 +24,7 @@ const PAINT_ITEMS = [
   '🎨 [Uncommon] Glacier Eagle',
   '🎨 [Rare] Scarlet Ghost',
   '🎨 [Uncommon] Topaz Diamond',
+  '🎨 [Legendary] Yellow Lightning',
 ];
 const PAINT_CHANNEL = '1567842857316786317';
 const PAINT_THRESHOLD = 4;
