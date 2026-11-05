@@ -17,6 +17,17 @@ const TRIGGERS = [
   { text: '🍎 [Mythical] Ember', alertChannel: '1561911763102994512', message: '@everyone - EMBER HIT!' },
 ];
 
+const PAINT_ITEMS = [
+  '🎨 [Rare] Lime Blade',
+  '🎨 [Legendary] Torment Pain',
+  '🎨 [Common] Celebration Bomb',
+  '🎨 [Uncommon] Glacier Eagle',
+  '🎨 [Rare] Scarlet Ghost',
+  '🎨 [Uncommon] Topaz Diamond',
+];
+const PAINT_CHANNEL = '1567842857316786317';
+const PAINT_THRESHOLD = 4;
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
@@ -32,6 +43,7 @@ client.on('messageCreate', async (message) => {
     ].join(' '))
   ].join(' ');
 
+  // Regular triggers
   for (const trigger of TRIGGERS) {
     if (fullText.includes(trigger.text)) {
       const messageLink = `https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}`;
@@ -39,6 +51,29 @@ client.on('messageCreate', async (message) => {
       if (alertChannel) {
         await alertChannel.send(`${trigger.message}\n${messageLink}`);
       }
+    }
+  }
+
+  // Paint items - count total quantity
+  let totalPaint = 0;
+  const foundItems = [];
+
+  for (const item of PAINT_ITEMS) {
+    // Match item followed by optional "- Nx" to get quantity
+    const regex = new RegExp(item.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?:\\s*-\\s*(\\d+)x)?', 'g');
+    let match;
+    while ((match = regex.exec(fullText)) !== null) {
+      const qty = match[1] ? parseInt(match[1]) : 1;
+      totalPaint += qty;
+      foundItems.push(`${item} x${qty}`);
+    }
+  }
+
+  if (totalPaint >= PAINT_THRESHOLD) {
+    const messageLink = `https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}`;
+    const paintChannel = await client.channels.fetch(PAINT_CHANNEL);
+    if (paintChannel) {
+      await paintChannel.send(`@everyone - PAINT HIT! Total: ${totalPaint}\n${foundItems.join('\n')}\n${messageLink}`);
     }
   }
 });
